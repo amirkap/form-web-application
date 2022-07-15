@@ -38,8 +38,12 @@
                 <label>Salary</label>
                 <input type="number" id="salary" name="salary" required>
             </p>   
-             
-                <label></label><button type="submit"> Done </button>
+             <script>
+                function setVisibility(id, visibility) {
+                    document.getElementById(id).style.display = visibility;
+                }
+             </script>
+                <label></label><button type="submit" onclick="setVisibility('banner','inline')"> Done </button>
             
         </form>
     </div>

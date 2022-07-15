@@ -12,9 +12,9 @@ app.get('/', function(req,res){
 });
 app.post('/', function(req, res){
          var con = mysql.createConnection({
-             host: "eu-cdbr-west-03.cleardb.net",
-             user: "bb685725821d93",
-             password: "8d87687d"
+             host: process.env.DB_HOST,
+             user: process.env.DB_USER,
+             password: process.env.DB_PASSWORD
          });
         console.log("Connected to DB!");
         let table = "heroku_aa9b39c5b3399b8.employees"
