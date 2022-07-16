@@ -60,4 +60,6 @@ button {
   
   .banner {
      display: none;
+     text-align: center;
+     color: green;
   }

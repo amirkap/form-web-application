@@ -38,16 +38,16 @@ app.post('/', function(req, res){
 
 /**
  * 
- * @param {*} requestBody 
+ * @param {*} requestBody
  * @returns 
  */
 function getInsertQuery (requestBody) {
     let headers = "idNumber, firstName, lastName, dateOfBirth, salary"
-        let formValues = {idNumber:req.body.idNumber,
-                          firstName:`"${req.body.firstName}"`,
-                          lastName:`"${req.body.lastName}"`,
-                          dateOfBirth:`"${req.body.dateOfBirth}"`,
-                          salary:req.body.salary}
+        let formValues = {idNumber:requestBody.idNumber,
+                          firstName:`"${requestBody.firstName}"`,
+                          lastName:`"${requestBody.lastName}"`,
+                          dateOfBirth:`"${requestBody.dateOfBirth}"`,
+                          salary:requestBody.salary}
         let valuesAsStr = Object.values(formValues).join(",")
         return `INSERT INTO ${DB_TABLE_NAME} (${headers}) VALUES (${valuesAsStr}) 
                      ON DUPLICATE KEY 
