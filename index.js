@@ -1,14 +1,21 @@
 var express = require('express');
-//var bp = require('body-parser');
 var mysql = require('mysql');
+
+const DB_TABLE_NAME = "heroku_aa9b39c5b3399b8.employees"
+const BASE_PATH = __dirname + '/'
+const HTML_FILE_PATH = __dirname + '/index.html'
+
+const DB_CONNECTION_MSG = "Connected to DB!"
+
+
 var app = express();
-app.use(express.static(__dirname + '/'));
+app.use(express.static(BASE_PATH));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 
 app.get('/', function(req,res){
-    res.sendFile(__dirname + '/index.html');
+    res.sendFile(HTML_FILE_PATH);
 });
 app.post('/', function(req, res){
          var con = mysql.createConnection({
@@ -16,8 +23,7 @@ app.post('/', function(req, res){
              user: process.env.DB_USER,
              password: process.env.DB_PASSWORD
          });
-        console.log("Connected to DB!");
-        let table = "heroku_aa9b39c5b3399b8.employees"
+        console.log(DB_CONNECTION_MSG);
         let headers = "idNumber, firstName, lastName, dateOfBirth, salary"
         let formValues = {idNumber:req.body.idNumber,
                           firstName:`"${req.body.firstName}"`,
@@ -25,7 +31,7 @@ app.post('/', function(req, res){
                           dateOfBirth:`"${req.body.dateOfBirth}"`,
                           salary:req.body.salary}
         let valuesAsStr = Object.values(formValues).join(",")
-        let query = `INSERT INTO ${table} (${headers}) VALUES (${valuesAsStr}) 
+        let query = `INSERT INTO ${DB_TABLE_NAME} (${headers}) VALUES (${valuesAsStr}) 
                      ON DUPLICATE KEY 
                         UPDATE firstName=${formValues.firstName},
                                lastName=${formValues.lastName},
@@ -33,7 +39,7 @@ app.post('/', function(req, res){
                                salary=${formValues.salary}`
         con.query(query, function (err, result){
             if (err) throw err;
-            res.sendFile(__dirname + "/index.html");
+            res.sendFile(HTML_FILE_PATH);
             
             console.log(result);
             console.log("1 Employee updated");
