@@ -24,7 +24,7 @@ app.post('/', function(req, res){
              password: process.env.DB_PASSWORD
          });
         console.log(DB_CONNECTION_MSG);
-        let query = getInsertQuery(req.body)
+        let query = getInsertQuery(req.body);
         con.query(query, function (err, result){
             if (err) throw err;
             res.sendFile(HTML_FILE_PATH);
@@ -39,7 +39,7 @@ app.post('/', function(req, res){
 /**
  * 
  * @param {*} requestBody
- * @returns 
+ * @returns  Insert query string 
  */
 function getInsertQuery (requestBody) {
     let headers = "idNumber, firstName, lastName, dateOfBirth, salary"
@@ -54,7 +54,7 @@ function getInsertQuery (requestBody) {
                         UPDATE firstName=${formValues.firstName},
                                lastName=${formValues.lastName},
                                dateOfBirth=${formValues.dateOfBirth},
-                               salary=${formValues.salary}`
+                               salary=${formValues.salary}`;
 }
 
 var port = process.env.PORT || 80;

@@ -8,7 +8,7 @@ This is a web form application. It stores the data entered in the form fields in
 
 Requirements
 ------------
-Modules: express, mysql
+Modules: express, mysql, dotenv
 
 
 
