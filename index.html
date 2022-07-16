@@ -5,46 +5,53 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Form Application</title>
 </head>
 <body>
-    <div class="header"> 
+    <div class="header1"> 
+        <br><br><br><br>
         <h1>Application</h1>
         <hr style="width:auto; height: 2px ; background-color:black ; margin:60px;"/>
     </div>
-    <div class="banner" id="banner"> 
-        <h3> Form submitted</h3>
-    </div>
     <div class="frame">
-        <div class="header"> <h2> Personal</h2> </div>
+        <div class="header2"> <h2> Personal</h2> </div>
         <form action="/" method="post"> 
-            <p> 
-                <label>First Name</label>
-                <input type="text" id="firstName" name="firstName" placeholder="first name" required> 
+            <p>
+                <label for="firstName">First Name</label>
+                <input type="text" id="firstName" name="firstName" required> 
             </p>
             <p>
-                <label>Last Name</label>
+                <label for="lastName">Last Name</label>
                 <input type="text" id="lastName" name="lastName" required>
             </p>   
             <p>
-                <label>Date of Birth</label>
-                <input type="date" id="dateOfBirth" name="dateOfBirth" required>
+                <label for="dateOfBirth">Date of Birth</label>
+                <input type="date" id="dateOfBirth" name="dateOfBirth" min="1900-01-01" max="2022-01-01" required>
             </p>   
             <p>
-                <label>ID Number</label>
-                <input type="number" id="idNumber" name="idNumber" required>
+                <label for="idNumber">ID Number</label>
+                <input type="number" id="idNumber" name="idNumber" min="1" max="10000000000" required>
             </p>   
             <p>
-                <label>Salary</label>
+                <label for="salary">Salary</label>
                 <input type="number" id="salary" name="salary" required>
             </p>   
              <script>
                 function setVisibility(id, visibility) {
-                    document.getElementById(id).style.display = visibility;
+                    const idNumber = document.getElementById("idNumber").checkValidity();
+                    const firstName = document.getElementById("firstName").checkValidity();
+                    const lastName = document.getElementById("lastName").checkValidity();
+                    const dateOfBirth = document.getElementById("dateOfBirth").checkValidity();
+                    const salary = document.getElementById("salary").checkValidity();
+                     if (idNumber && firstName && lastName && dateOfBirth && salary) 
+                        document.getElementById(id).style.display = visibility;
                 }
              </script>
-                <label></label><button type="submit" onclick="setVisibility('banner','inline')"> Done </button>
-            
+                <label></label><button type="submit" onclick="setVisibility('banner','block')"> Done </button>
+                <div> 
+                 <br>
+                    <h4 class="banner" id="banner"> Form submitted! </h4>
+                </div>
         </form>
     </div>
 </body>

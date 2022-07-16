@@ -1,12 +1,12 @@
 var express = require('express');
 var mysql = require('mysql');
+var dotenv = require('dotenv');
+dotenv.config();
 
-const DB_TABLE_NAME = "heroku_aa9b39c5b3399b8.employees"
-const BASE_PATH = __dirname + '/'
-const HTML_FILE_PATH = __dirname + '/index.html'
-
-const DB_CONNECTION_MSG = "Connected to DB!"
-
+const BASE_PATH = __dirname + '/';
+const HTML_FILE_PATH = __dirname + '/index.html';
+const DB_TABLE_NAME = "heroku_aa9b39c5b3399b8.employees";
+const DB_CONNECTION_MSG = "Connected to DB!";
 
 var app = express();
 app.use(express.static(BASE_PATH));
@@ -27,19 +27,17 @@ app.post('/', function(req, res){
         let query = getInsertQuery(req.body);
         con.query(query, function (err, result){
             if (err) throw err;
-            res.sendFile(HTML_FILE_PATH);
-            
             console.log(result);
             console.log("1 Employee updated");
+            setTimeout(() => res.sendFile(HTML_FILE_PATH), 1000);  
         });
-        con.end();
-        
+        con.end();       
 });
 
 /**
  * 
  * @param {*} requestBody
- * @returns  Insert query string 
+ * @returns  'INSERT' query string 
  */
 function getInsertQuery (requestBody) {
     let headers = "idNumber, firstName, lastName, dateOfBirth, salary"
@@ -48,7 +46,7 @@ function getInsertQuery (requestBody) {
                           lastName:`"${requestBody.lastName}"`,
                           dateOfBirth:`"${requestBody.dateOfBirth}"`,
                           salary:requestBody.salary}
-        let valuesAsStr = Object.values(formValues).join(",")
+        let valuesAsStr = Object.values(formValues).join(",");
         return `INSERT INTO ${DB_TABLE_NAME} (${headers}) VALUES (${valuesAsStr}) 
                      ON DUPLICATE KEY 
                         UPDATE firstName=${formValues.firstName},
