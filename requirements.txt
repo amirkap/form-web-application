@@ -1,2 +1,3 @@
 express
-mysql
+pg
+dotenv
