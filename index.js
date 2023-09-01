@@ -5,7 +5,7 @@ dotenv.config();
 
 const BASE_PATH = __dirname + '/';
 const HTML_FILE_PATH = __dirname + '/index.html';
-//const DB_TABLE_NAME = "employees";
+const DB_TABLE_NAME = "EmployeeInfo";
 const DB_CONNECTION_MSG = "Connected to DB!";
 
 const app = express();
@@ -48,7 +48,7 @@ app.post('/', function (req, res) {
  * @returns  'INSERT' query string 
  */
 function getInsertQuery(requestBody) {
-  const headers = "idNumber, firstName, lastName, dateOfBirth, salary";
+  const headers = "IDNumber, FirstName, LastName, DateOfBirth, Salary";
   const formValues = {
     idNumber: requestBody.idNumber,
     firstName: requestBody.firstName,
@@ -58,12 +58,12 @@ function getInsertQuery(requestBody) {
   };
   const valuesAsStr = Object.values(formValues).map(value => `'${value}'`).join(",");
   return `INSERT INTO ${DB_TABLE_NAME} (${headers}) VALUES (${valuesAsStr}) 
-           ON CONFLICT (idNumber)
+           ON CONFLICT (IDNumber)
            DO UPDATE SET 
-              firstName=EXCLUDED.firstName,
-              lastName=EXCLUDED.lastName,
-              dateOfBirth=EXCLUDED.dateOfBirth,
-              salary=EXCLUDED.salary`;
+              FirstName=EXCLUDED.FirstName,
+              LastName=EXCLUDED.LastName,
+              DateOfBirth=EXCLUDED.DateOfBirth,
+              Salary=EXCLUDED.Salary`;
 }
 
 const port = process.env.PORT || 80;
