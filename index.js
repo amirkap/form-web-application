@@ -5,7 +5,7 @@ dotenv.config();
 
 const BASE_PATH = __dirname + '/';
 const HTML_FILE_PATH = __dirname + '/index.html';
-const DB_TABLE_NAME = "EmployeeInfo";
+const DB_TABLE_NAME = "Employee";
 const DB_CONNECTION_MSG = "Connected to DB!";
 
 const app = express();
