@@ -49,7 +49,7 @@ app.post('/', function (req, res) {
  * @returns  'INSERT' query string 
  */
 function getInsertQuery(requestBody) {
-  const headers = "IDNumber, FirstName, LastName, DateOfBirth, Salary";
+  const headers = `"IDNumber", "FirstName", "LastName", "DateOfBirth", "Salary"`;
   const formValues = {
     idNumber: requestBody.idNumber,
     firstName: requestBody.firstName,
@@ -59,12 +59,12 @@ function getInsertQuery(requestBody) {
   };
   const valuesAsStr = Object.values(formValues).map(value => `'${value}'`).join(",");
   return `INSERT INTO ${DB_TABLE_NAME} (${headers}) VALUES (${valuesAsStr}) 
-           ON CONFLICT (IDNumber)
+           ON CONFLICT ("IDNumber")
            DO UPDATE SET 
-              FirstName=EXCLUDED.FirstName,
-              LastName=EXCLUDED.LastName,
-              DateOfBirth=EXCLUDED.DateOfBirth,
-              Salary=EXCLUDED.Salary`;
+              "FirstName"=EXCLUDED."FirstName",
+              "LastName"=EXCLUDED."LastName",
+              "DateOfBirth"=EXCLUDED."DateOfBirth",
+              "Salary"=EXCLUDED."Salary"`;
 }
 
 const port = process.env.PORT || 80;
