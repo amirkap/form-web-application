@@ -38,8 +38,9 @@ Before you can run the application, you'll need to have the following installed:
 
 3. Install the required Node.js packages:
 
-   ```bash
+    ```bash
    npm install
+    
 
 ### Usage
 
