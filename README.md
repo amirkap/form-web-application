@@ -54,11 +54,9 @@ This will start the Express.js server, and you can access the application in you
 
 The application uses PostgreSQL as its database, and the connection details should be configured using environment variables. Create a .env file in the project root directory and add the following variables:
 
-    ```bash
-   DATABASE_URL=your_postgresql_database_url
-   
-      ```
-      
+    ```bash DATABASE_URL=your_postgresql_database_url
+
+    
 Replace your_postgresql_database_url with the actual PostgreSQL database URL provided to you by Render.
 
 ### Deploying to Render
