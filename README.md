@@ -1,8 +1,8 @@
 # Web Form Application
 
-This is a simple web form application that allows employees to enter their information into a web form, which is then stored in a PostgreSQL database. The application is hosted on Render, and the PostgreSQL database is also provided by Render.
+This is a simple web form application that allows employees to enter their information into a web form, which is then stored in a PostgreSQL database. The application is hosted on Render, as well as the PostgreSQL server.
 
-Access app at https://form-application.onrender.com/
+Access app at: https://form-application.onrender.com/
 
 ## Table of Contents
 
