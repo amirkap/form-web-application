@@ -45,10 +45,9 @@ Before you can run the application, you'll need to have the following installed:
 
 To run the Web Form Application locally, use the following command:
 
-     ```
-   npm start
+     ```bash npm start
    
-      ```
+
 This will start the Express.js server, and you can access the application in your web browser at http://localhost:3000.
 
 ### Database Configuration
