@@ -26,7 +26,24 @@
             </p>   
             <p>
                 <label for="dateOfBirth">Date of Birth</label>
-                <input type="date" id="dateOfBirth" name="dateOfBirth" min="1900-01-01" max="2022-01-01" required>
+                <input type="date" id="dateOfBirth" name="dateOfBirth" min="1901-01-01" required>
+                <script>
+                    // Get the current date in YYYY-MM-DD format
+                    const today = new Date();
+                    const year = today.getFullYear();
+                    let month = today.getMonth() + 1;
+                    if (month < 10) {
+                        month = `0${month}`;
+                    }
+                    let day = today.getDate();
+                    if (day < 10) {
+                        day = `0${day}`;
+                    }
+                    const currentDate = `${year}-${month}-${day}`;
+            
+                    // Set the current date as the max value for the date input
+                    document.getElementById('dateOfBirth').setAttribute('max', currentDate);
+                </script>
             </p>   
             <p>
                 <label for="idNumber">ID Number</label>
