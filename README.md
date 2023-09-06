@@ -41,12 +41,11 @@ Before you can run the application, you'll need to have the following installed:
     ```bash
    npm install
     
-
 ### Usage
 
 To run the Web Form Application locally, use the following command:
 
-   ```bash
+    ```bash
    npm start
 
 This will start the Express.js server, and you can access the application in your web browser at http://localhost:3000.
@@ -55,7 +54,7 @@ This will start the Express.js server, and you can access the application in you
 
 The application uses PostgreSQL as its database, and the connection details should be configured using environment variables. Create a .env file in the project root directory and add the following variables:
 
-   ```bash
+      ```bash
    DATABASE_URL=your_postgresql_database_url
 
 Replace your_postgresql_database_url with the actual PostgreSQL database URL provided to you by Render.
